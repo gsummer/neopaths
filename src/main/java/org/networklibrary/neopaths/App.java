@@ -34,7 +34,6 @@ public class App
 	public static void main( String[] args ) throws IOException
 	{
 		String db = args[0];
-		db = "graph.db";
 		String idFile = args[1];
 		String mark = args[2];
 		String weight = args[3];
@@ -55,21 +54,20 @@ public class App
 				if(n == null){
 					System.out.println("WARNING: " + id + " not found");
 				} else {
-					if(n.getDegree() > 0){
+					n.setProperty(mark + "_initial", true);
+//					if(n.getDegree() > 0){
 						nodes.add(n);
-					}
+//					}
 				}
 			}
 			
-			for(Node n : nodes){
-				n.setProperty(mark + "_initial", true);
-			}
 		
 			tx.success();
 		}
 		
 
 		System.out.println("num ids: " + ids.size());
+		System.out.println("num nodes: " + nodes.size());
 		
 		NeoPaths pathExt = new NeoPathFast();
 

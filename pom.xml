@@ -57,7 +57,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>org.networklibrary.neonetworkanalyzer.App</mainClass>
+							<mainClass>org.networklibrary.neopaths.App</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
