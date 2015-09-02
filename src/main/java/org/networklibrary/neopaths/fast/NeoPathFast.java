@@ -110,9 +110,13 @@ public class NeoPathFast implements NeoPaths {
 		try(Transaction tx = graph.beginTx()){
 
 			for(Future<List<PropertyContainer>> f : results){
-				result.addAll(f.get());
+				List<PropertyContainer> path = f.get();
+				if(path != null){
+					result.addAll(f.get());
+				}
 			}
 
+			System.out.println("result size: " + results.size());
 			for(PropertyContainer pc : result){
 				pc.setProperty(mark, true);
 			}
@@ -204,13 +208,17 @@ public class NeoPathFast implements NeoPaths {
 
 			sssPath.setStartNode(start);
 
-
 			for(Node end : targets){
 				if(end != start && end.getDegree() > 0){
-					result.addAll(sssPath.getPath(end));
+					List<PropertyContainer> path = sssPath.getPath(end);
+					if(path != null){
+						result.addAll(path);
+					}
 				}
 			}
 
+			System.out.println("done with node: " + start.getId());
+			
 			return result;
 		}
 

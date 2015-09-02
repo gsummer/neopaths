@@ -42,6 +42,10 @@ public class App
 		List<String> ids = readFromFile(new File(idFile));
 
 		System.out.println("db: " + db);
+		System.out.println("id file: " + idFile);
+		System.out.println("mark: " + mark);
+		System.out.println("weight name: " + weight);
+		System.out.println("directed: " + directed);
 
 		GraphDatabaseService g = new GraphDatabaseFactory().newEmbeddedDatabaseBuilder(db).newGraphDatabase();
 
@@ -55,9 +59,8 @@ public class App
 					System.out.println("WARNING: " + id + " not found");
 				} else {
 					n.setProperty(mark + "_initial", true);
-//					if(n.getDegree() > 0){
-						nodes.add(n);
-//					}
+					nodes.add(n);
+
 				}
 			}
 			
